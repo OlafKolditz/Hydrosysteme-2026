@@ -1,0 +1,86 @@
+<VTKFile type="UnstructuredGrid" version="1.0" byte_order="LittleEndian" header_type="UInt64">
+  <UnstructuredGrid>
+    <Piece NumberOfPoints="18" NumberOfCells="18">
+      <PointData Scalars="bulk_node_ids">
+        <DataArray type="UInt64" Name="bulk_node_ids" format="ascii" RangeMin="1169" RangeMax="12321">
+          1774 4577 3175 12293 2616 5137
+          3950 1169 2394 4416 10754 5661
+          1891 1483 3184 5093 1898 12321
+        </DataArray>
+        <DataArray type="Int32" Name="MaterialIDs" format="ascii" RangeMin="1" RangeMax="5">
+          1 5 1 1 5 1
+          1 1 1 1 1 1
+          5 5 1 1 5 1
+        </DataArray>
+        <DataArray type="Float64" Name="recharge" format="ascii" RangeMin="156" RangeMax="221">
+          164.620617617778 180 191.389872592997 165 197 173.016523338896
+          163.856272946325 166 178 221 191.360579236367 164
+          190.20652477991 171.886586659448 180.010678322425 156 175.53493831115 185
+        </DataArray>
+        <DataArray type="Int32" Name="submesh_id" format="ascii" RangeMin="0" RangeMax="6">
+          0 6 0 5 0 5
+          0 0 0 0 0 4
+          0 0 0 4 0 5
+        </DataArray>
+      </PointData>
+      <CellData>
+        <DataArray type="Float64" Name="Head" format="ascii" RangeMin="66.38" RangeMax="137.87">
+          70.87 77.17 75.12 104.01 105.19 72.65
+          68.04 106.69 120.3 137.87 75.28 99.3
+          124.61 68.75 67.81 128.69 66.38 125.06
+        </DataArray>
+        <DataArray type="UInt64" Name="bulk_element_ids" format="ascii" RangeMin="1894" RangeMax="24303">
+          1894 4061 2852 24285 19294 4835
+          17163 17749 21503 21717 23957 5653
+          5434 4899 9146 24301 24108 24303
+        </DataArray>
+      </CellData>
+      <Points>
+        <DataArray type="Float32" Name="Points" NumberOfComponents="3" format="ascii" RangeMin="7251234.470081559" RangeMax="7284036.846539321">
+          4458244 5758775.5 73 4471686 5738388.5 80
+          4449788 5763704.5 78 4446312 5745098.5 106
+          4459616 5749834.5 114 4453366.5 5763535 75
+          4461248.5 5757990.5 70 4450542.5 5743834 109
+          4440972 5738804.5 124 4436931 5735333 143
+          4448888 5764184 79 4447963.5 5748154.5 102
+          4462471 5740751.5 135 4471860.5 5742635 71
+          4464803.5 5750599.5 67 4454639.5 5737219 133
+          4469345 5745753 69 4438942 5738221.5 126
+          <InformationKey name="L2_NORM_RANGE" location="vtkDataArray" length="2">
+            <Value index="0">
+              7251234.4701
+            </Value>
+            <Value index="1">
+              7284036.8465
+            </Value>
+          </InformationKey>
+          <InformationKey name="L2_NORM_FINITE_RANGE" location="vtkDataArray" length="2">
+            <Value index="0">
+              7251234.4701
+            </Value>
+            <Value index="1">
+              7284036.8465
+            </Value>
+          </InformationKey>
+        </DataArray>
+      </Points>
+      <Cells>
+        <DataArray type="Int64" Name="connectivity" format="ascii" RangeMin="0" RangeMax="17">
+          0 1 2 3 4 5
+          6 7 8 9 10 11
+          12 13 14 15 16 17
+        </DataArray>
+        <DataArray type="Int64" Name="offsets" format="ascii" RangeMin="1" RangeMax="18">
+          1 2 3 4 5 6
+          7 8 9 10 11 12
+          13 14 15 16 17 18
+        </DataArray>
+        <DataArray type="UInt8" Name="types" format="ascii" RangeMin="1" RangeMax="1">
+          1 1 1 1 1 1
+          1 1 1 1 1 1
+          1 1 1 1 1 1
+        </DataArray>
+      </Cells>
+    </Piece>
+  </UnstructuredGrid>
+</VTKFile>

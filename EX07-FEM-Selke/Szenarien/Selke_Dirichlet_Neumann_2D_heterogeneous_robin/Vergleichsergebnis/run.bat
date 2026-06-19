@@ -1,0 +1,1 @@
+ogs.exe Selke_Basin.prj -l debug

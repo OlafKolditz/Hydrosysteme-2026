@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<VTKFile type="Collection" version="0.1" byte_order="LittleEndian" compressor="vtkZLibDataCompressor">
+  <Collection>
+    <DataSet timestep="0" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_0_t_0.000000.vtu"/>
+    <DataSet timestep="3153600" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_1_t_3153600.000000.vtu"/>
+    <DataSet timestep="6307200" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_2_t_6307200.000000.vtu"/>
+    <DataSet timestep="9460800" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_3_t_9460800.000000.vtu"/>
+    <DataSet timestep="12614400" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_4_t_12614400.000000.vtu"/>
+    <DataSet timestep="15768000" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_5_t_15768000.000000.vtu"/>
+    <DataSet timestep="18921600" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_6_t_18921600.000000.vtu"/>
+    <DataSet timestep="22075200" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_7_t_22075200.000000.vtu"/>
+    <DataSet timestep="25228800" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_8_t_25228800.000000.vtu"/>
+    <DataSet timestep="28382400" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_9_t_28382400.000000.vtu"/>
+    <DataSet timestep="31536000" group="" part="0" file="Selke_Basin_Pnt_Wells_ts_10_t_31536000.000000.vtu"/>
+  </Collection>
+</VTKFile>

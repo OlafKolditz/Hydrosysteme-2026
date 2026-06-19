@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
   double x[n], x0[n];
   double y;
   for(int i=0;i<n;i++)
-    x[i]=10000.;
+    x[i]=20.;
   ofstream out_file1;
   out_file1.open("out1.txt");
   ofstream out_file2;
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
   // QR = R*dx2*dy2
   QR = 1.e-07 * dx2 * dy2;
   cout << "QR: " << QR << endl;
-  QP2 = - 0.1;
+  QP2 = 0.1;
   QP3 = 0.0;
   QP5 = 0.0;
   //  QP6 = - 0.005;
