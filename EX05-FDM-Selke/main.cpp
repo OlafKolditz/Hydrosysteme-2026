@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
   for(int t=0;t<tn;t++)
   {
     fdm->RunTimeStep();
+    fdm->OutputResults(t); //changed with save
     fdm->SaveTimeStep();
-    fdm->OutputResults(t);
     if((t%100)==0)
       fdm->OutputResultsVTK(t);
   }

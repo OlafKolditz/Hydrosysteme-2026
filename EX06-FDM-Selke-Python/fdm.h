@@ -39,7 +39,8 @@ public:
     void SetInactiveNodes();
     void SetInitialConditions();
     void SetBoundaryConditions();
-    void RunTimeStep();
+    void RunTimeStepExp();
+    void RunTimeStepImp();
     void SaveTimeStep();
     void OutputResults(int);
     void OutputMesh();

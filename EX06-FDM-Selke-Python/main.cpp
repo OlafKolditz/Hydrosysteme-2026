@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
   int tn = 10;
   for(int t=0;t<tn;t++)
   {
-    fdm->RunTimeStep();
+    fdm->RunTimeStepImp();
     fdm->SaveTimeStep();
 	if(t==tn-1)
 		fdm->OutputResults(t);

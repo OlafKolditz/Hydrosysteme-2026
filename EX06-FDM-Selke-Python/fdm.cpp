@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <cmath>   // for std::abs(double)
 
 FDM::FDM()
 {
@@ -10,11 +11,11 @@ FDM::FDM()
   jy = 33;
   dx = 1000.;
   dy = 1000.;
-  dt = 1e6; // 0.25e6 sec
+  dt = 0.25e6;
   S0 = 1e-5;
-  Kf = 1e-5;                                     // m/s
+  Kf = 1e-4;                                     // m/s
   //Q = 3.171e-9; // 100mm/year : 0.1/365/86400 = 3.171e-9 m/s
-  Q = 0.; 
+  Q = 1e-9; 
   u0 = 300.;
   x0 = 4423656.0991422;
   y0 = 5716944.1927754;
@@ -164,7 +165,7 @@ void FDM::SetBoundaryConditions()
   }
 }
 
-void FDM::RunTimeStep()
+void FDM::RunTimeStepExp()
 {
   for( j=0;j<jy;j++)
   {
@@ -333,4 +334,67 @@ void FDM::OutputResultsVTK(int t)
   }
 }
 
+void FDM::RunTimeStepImp()
+{
+    const double alpha = Kf / S0 * dt / dx2;   // note: alpha = Kf*dt/(S0*dx^2)
+    const double beta  = Kf / S0 * dt / dy2;
+    const double diag  = 1.0 + 2.0*alpha + 2.0*beta;   // after multiplying by dt? Check dimensions.
 
+    // We'll solve:  (1 + 2α + 2β) u_new - α(u_new_left+u_new_right) - β(u_new_down+u_new_up) = u_old + Q*dt/S0
+
+    const double max_iter = 1000;
+    const double tol = 1e-3;
+    double omega = 1.5;   // SOR relaxation factor
+
+    // Copy old values for RHS (we keep u as the old time level)
+    // We'll store new values in u_new, initial guess can be u (old).
+    for (int n=0; n<ix*jy; ++n) u_new[n] = u[n];
+
+    for (int iter=0; iter<max_iter; ++iter) {
+        double max_change = 0.0;
+
+        for (int j=0; j<jy; ++j) {
+            for (int i=0; i<ix; ++i) {
+                int n = j*ix + i;
+
+                if (IsBCNode(n,bc_nodes) || IsNodeInactive(n,nodes_inactive))
+                    continue;
+
+                // Neighbour indices
+                int left  = n - 1;
+                int right = n + 1;
+                int down  = n - ix;
+                int up    = n + ix;
+
+                // RHS: old u at this node + source term
+                double rhs = u[n] + (Q / S0) * dt;   // since we multiply by dt
+
+                // Add contributions from fixed boundary neighbours (if any)
+                if (IsBCNode(left,bc_nodes))  rhs += alpha * u[left];
+                if (IsBCNode(right,bc_nodes)) rhs += alpha * u[right];
+                if (IsBCNode(down,bc_nodes))  rhs += beta  * u[down];
+                if (IsBCNode(up,bc_nodes))    rhs += beta  * u[up];
+
+                // Use current iteration values for neighbours (Gauss-Seidel style)
+                double u_new_val = ( rhs
+                                   + (IsBCNode(left,bc_nodes) ? 0.0 : alpha * u_new[left])
+                                   + (IsBCNode(right,bc_nodes) ? 0.0 : alpha * u_new[right])
+                                   + (IsBCNode(down,bc_nodes) ? 0.0 : beta  * u_new[down])
+                                   + (IsBCNode(up,bc_nodes) ? 0.0 : beta  * u_new[up]) )
+                                 / diag;
+
+                // SOR update
+                double change = u_new_val - u_new[n];
+                u_new[n] += omega * change;
+                max_change = std::max(max_change, std::abs(change));
+            }
+        }
+
+        if (max_change < tol) {
+            // std::cout << "Converged after " << iter << " iterations" << std::endl;
+            break;
+        }
+    }
+
+    // Now u_new contains the solution at n+1
+}
